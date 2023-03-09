@@ -1,8 +1,11 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { createTheme, ThemeProvider, } from '@mui/material/styles';
-import List from './components/List';
+import { BrowserRouter, BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
+import List from './components/List';
+import Header from './components/Header';
+import { createTheme } from '@mui/material';
+import { ThemeProvider } from '@emotion/react';
+import { CssBaseline } from '@mui/material';
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
@@ -10,16 +13,32 @@ const darkTheme = createTheme({
 });
 
 function App() {
+  
   return (
-    <React.Fragment>
-      <Router>
+      // <React.Fragment>
+
+<ThemeProvider theme={darkTheme}>
+<Header/>
+        <BrowserRouter>
         <Routes>
           <Route path="/" element={<List />} />
         </Routes>
-      </Router>
-    </React.Fragment>
+        </BrowserRouter>
+        <CssBaseline />
+    </ThemeProvider>
+      // </React.Fragment>
+      /* <Router>
+        <Header/>
+        <Provider theme={darkTheme}>
+        <Routes>
+          <Route path="/" element={<List />} />
+        </Routes>
+        </ThemeProvider>
+      </Router> */
+      
   );
 }
 
 export default App;
+
 

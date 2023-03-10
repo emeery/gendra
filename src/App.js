@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { BrowserRouter, BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import List from './components/List';
 import Header from './components/Header';
 import { createTheme } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 import { CssBaseline } from '@mui/material';
+import { useSelector } from 'react-redux';
+import Items from './components/Items';
+
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
@@ -13,29 +15,18 @@ const darkTheme = createTheme({
 });
 
 function App() {
-  
+  const items= useSelector(state=> state.items)
+  console.log(items);
   return (
-      // <React.Fragment>
-
-<ThemeProvider theme={darkTheme}>
-<Header/>
-        <BrowserRouter>
+    <ThemeProvider theme={darkTheme}>
+      <Header />
+      <BrowserRouter>
         <Routes>
-          <Route path="/" element={<List />} />
+          <Route path="/" element={<Items />} />
         </Routes>
-        </BrowserRouter>
-        <CssBaseline />
+      </BrowserRouter>
+      <CssBaseline />
     </ThemeProvider>
-      // </React.Fragment>
-      /* <Router>
-        <Header/>
-        <Provider theme={darkTheme}>
-        <Routes>
-          <Route path="/" element={<List />} />
-        </Routes>
-        </ThemeProvider>
-      </Router> */
-      
   );
 }
 

@@ -1,6 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import ItemReducer from "./reducers/Item-reducer";
-const store = configureStore({
-    reducer: {items: ItemReducer}
+import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
+import charactersSlice from './api/characterSlice';
+export const store = configureStore({
+    reducer: {
+        charactersSlice
+    },
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(),
 })
-export default store;
+
